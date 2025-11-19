@@ -238,7 +238,7 @@ export default function FancyLoader({ onComplete }: LoaderProps) {
           <div className="grid grid-cols-3 gap-4 mb-4">
             <div className="bg-deepBlue/30 border border-cyan/20 rounded-lg p-3">
               <div className="text-xs text-slate/60 font-mono mb-1">ACCURACY</div>
-              <div className="text-2xl font-bold text-cyan font-mono">
+              <div className="text-xl sm:text-2xl font-bold text-cyan font-mono">
                 {metrics.accuracy.toFixed(2)}%
               </div>
               <div className="w-full h-1 bg-deepBlue rounded-full mt-2 overflow-hidden">
@@ -251,7 +251,7 @@ export default function FancyLoader({ onComplete }: LoaderProps) {
 
             <div className="bg-deepBlue/30 border border-orange/20 rounded-lg p-3">
               <div className="text-xs text-slate/60 font-mono mb-1">LOSS</div>
-              <div className="text-2xl font-bold text-orange font-mono">
+              <div className="text-xl sm:text-2xl font-bold text-orange font-mono">
                 {metrics.loss.toFixed(3)}
               </div>
               <div className="w-full h-1 bg-deepBlue rounded-full mt-2 overflow-hidden">
@@ -264,7 +264,7 @@ export default function FancyLoader({ onComplete }: LoaderProps) {
 
             <div className="bg-deepBlue/30 border border-cyan/20 rounded-lg p-3">
               <div className="text-xs text-slate/60 font-mono mb-1">EPOCHS</div>
-              <div className="text-2xl font-bold text-cyan font-mono">
+              <div className="text-xl sm:text-2xl font-bold text-cyan font-mono">
                 {metrics.epochs}/100
               </div>
               <div className="w-full h-1 bg-deepBlue rounded-full mt-2 overflow-hidden">
