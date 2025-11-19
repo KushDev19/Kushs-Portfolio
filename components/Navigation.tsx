@@ -54,20 +54,15 @@ export default function Navigation() {
     const observer = new IntersectionObserver(
       (entries) => {
         // Find the entry with the highest intersection ratio
-        let maxRatio = 0;
-        let maxEntry = null;
+        const visibleEntries = entries.filter(entry => entry.isIntersecting);
+        if (visibleEntries.length === 0) return;
 
-        entries.forEach((entry) => {
-          if (entry.intersectionRatio > maxRatio) {
-            maxRatio = entry.intersectionRatio;
-            maxEntry = entry;
-          }
-        });
+        const maxEntry = visibleEntries.reduce((max, entry) => {
+          return entry.intersectionRatio > max.intersectionRatio ? entry : max;
+        }, visibleEntries[0]);
 
-        if (maxEntry && maxEntry.isIntersecting) {
-          const id = maxEntry.target.id || 'hero';
-          setActiveSection(id);
-        }
+        const id = maxEntry.target.id || 'hero';
+        setActiveSection(id);
       },
       {
         threshold: [0, 0.1, 0.2, 0.3, 0.4, 0.5],

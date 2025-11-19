@@ -32,7 +32,7 @@ export default function GitHubStats() {
 
   const stats: StatCard[] = [
     { label: 'PUBLIC_REPOS', value: '17+', icon: '📦' },
-    { label: 'ACTIVE_PROJECTS', value: '5+', icon: '🚀' },
+    { label: 'COMPLETED_PROJECTS', value: '5+', icon: '🚀' },
     { label: 'TECH_STACK', value: 'ML/AI', icon: '⚡' },
   ];
 

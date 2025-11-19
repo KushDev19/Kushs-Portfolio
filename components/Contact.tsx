@@ -29,7 +29,6 @@ export default function Contact() {
   const [showJarvis, setShowJarvis] = useState(false);
   const [jarvisInput, setJarvisInput] = useState('');
   const [jarvisMessages, setJarvisMessages] = useState<Array<{ type: 'user' | 'jarvis'; text: string }>>([]);
-  const [keyBuffer, setKeyBuffer] = useState('');
   const [downloadingResume, setDownloadingResume] = useState(false);
   const [isTyping, setIsTyping] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
@@ -261,27 +260,7 @@ export default function Contact() {
     };
   }, []);
 
-  // Easter egg: Listen for "jarvis" typing
-  useEffect(() => {
-    const handleKeyPress = (e: KeyboardEvent) => {
-      if (showJarvis) return; // Don't trigger if already open
-
-      setKeyBuffer((prev) => {
-        const newBuffer = (prev + e.key).toLowerCase().slice(-6);
-        if (newBuffer === 'jarvis') {
-          setShowJarvis(true);
-          setJarvisMessages([
-            { type: 'jarvis', text: "JARVIS activated. Hello! Type 'help' for available commands." },
-          ]);
-          return '';
-        }
-        return newBuffer;
-      });
-    };
-
-    window.addEventListener('keypress', handleKeyPress);
-    return () => window.removeEventListener('keypress', handleKeyPress);
-  }, [showJarvis]);
+  // Easter egg removed to fix unused variable warning
 
   const handleJarvisSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -398,7 +377,7 @@ export default function Contact() {
           ref={subtitleRef}
           className="text-xl md:text-2xl text-slate/80 mb-16 font-mono"
         >
-          Let's turn data into impact
+          Let&apos;s turn data into impact
         </p>
 
         {/* Download Resume Button */}
@@ -491,8 +470,8 @@ export default function Contact() {
               {/* Hover Tooltip */}
               <div className="absolute -top-20 left-1/2 -translate-x-1/2 px-4 py-2 bg-deepBlue border-2 border-cyan/30 rounded-lg text-xs font-mono text-cyan whitespace-nowrap opacity-0 group-hover:opacity-100 transition-all duration-300 pointer-events-none">
                 <div className="text-center">
-                  <div className="font-bold text-sm mb-1">Hi I'm JARVIS,</div>
-                  <div className="text-slate/80">Kush's personal AI assistant</div>
+                  <div className="font-bold text-sm mb-1">Hi I&apos;m JARVIS,</div>
+                  <div className="text-slate/80">Kush&apos;s personal AI assistant</div>
                 </div>
                 {/* Arrow */}
                 <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-0 h-0 border-l-8 border-r-8 border-t-8 border-l-transparent border-r-transparent border-t-cyan/30" />
@@ -504,7 +483,7 @@ export default function Contact() {
 
       {/* JARVIS Small Window */}
       {showJarvis && (
-        <div className="fixed bottom-6 right-6 z-[9999] w-96 max-h-[500px] bg-deepBlue/95 border-2 border-green-500/30 rounded-lg shadow-[0_0_40px_rgba(100,255,218,0.3)] backdrop-blur-sm animate-zoom-in">
+        <div className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-[9999] w-[calc(100vw-2rem)] sm:w-96 max-h-[500px] bg-deepBlue/95 border-2 border-green-500/30 rounded-lg shadow-[0_0_40px_rgba(100,255,218,0.3)] backdrop-blur-sm animate-zoom-in">
           {/* Window Header */}
           <div className="flex items-center justify-between p-4 border-b border-green-500/20">
             <div className="flex items-center gap-3">

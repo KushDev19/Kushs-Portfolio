@@ -18,6 +18,7 @@ const config: Config = {
       fontFamily: {
         sans: ['var(--font-inter)', 'sans-serif'],
         heading: ['var(--font-space-grotesk)', 'sans-serif'],
+        display: ['Miguer Sans', 'system-ui', 'sans-serif'], // MVP headings (name, main titles) - MiguerSans-Regular from CDN
       },
     },
   },

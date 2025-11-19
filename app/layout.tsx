@@ -18,6 +18,8 @@ const spaceGrotesk = Space_Grotesk({
   display: "swap",
 });
 
+// MiguerSans-Regular is loaded via CDN in globals.css
+
 export const metadata: Metadata = {
   title: "Kush Rank | Data Scientist Aspirant",
   description: "Data Scientist Aspirant specializing in real-world data projects and end-to-end pipelines",

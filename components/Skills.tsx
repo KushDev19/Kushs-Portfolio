@@ -26,50 +26,66 @@ export default function Skills() {
 
   const categories: SkillCategory[] = [
     {
-      id: 'ml',
+      id: 'languages',
+      icon: '💻',
+      name: 'Languages',
+      skills: ['Python', 'JavaScript', 'TypeScript', 'Java'],
+      backInfo: 'Core Proficiency',
+      color: 'cyan',
+    },
+    {
+      id: 'ml-ai',
       icon: '🤖',
-      name: 'Machine Learning',
-      skills: ['Python', 'Scikit-learn', 'TensorFlow', 'XGBoost'],
-      backInfo: '4 Projects • Advanced',
+      name: 'ML & AI',
+      skills: ['Scikit-learn', 'PyTorch', 'TensorFlow', 'Keras', 'MLFlow', 'XGBoost'],
+      backInfo: '5+ Projects • Advanced',
+      color: 'cyan',
+    },
+    {
+      id: 'genai',
+      icon: '🧠',
+      name: 'GenAI & LLMs',
+      skills: ['LangChain', 'Transformers', 'Agentic AI', 'GenAI'],
+      backInfo: 'Cutting Edge',
       color: 'cyan',
     },
     {
       id: 'data',
       icon: '📊',
-      name: 'Data Analysis',
-      skills: ['Pandas', 'NumPy', 'EDA', 'Feature Engineering'],
-      backInfo: '5+ Projects • Expert',
-      color: 'cyan',
-    },
-    {
-      id: 'viz',
-      icon: '📈',
-      name: 'Visualization',
-      skills: ['Matplotlib', 'Seaborn', 'Plotly'],
-      backInfo: '10+ Dashboards',
+      name: 'Data Science',
+      skills: ['Pandas', 'NumPy', 'EDA', 'Matplotlib', 'Plotly'],
+      backInfo: 'Expert Level',
       color: 'cyan',
     },
     {
       id: 'web',
       icon: '🌐',
-      name: 'Web Development',
-      skills: ['Flask', 'HTML/CSS', 'JavaScript', 'React'],
-      backInfo: '3 Projects • Growing',
+      name: 'Web & Full Stack',
+      skills: ['Next.js', 'React.js', 'Node.js', 'TailwindCSS', 'Three.js', 'Flask', 'Streamlit'],
+      backInfo: '4+ Projects',
       color: 'cyan',
     },
     {
-      id: 'tools',
-      icon: '🔧',
-      name: 'Tools & Platforms',
-      skills: ['Git', 'Jupyter', 'VS Code', 'Google Colab'],
-      backInfo: 'Daily Driver',
+      id: 'database',
+      icon: '🗄️',
+      name: 'Databases',
+      skills: ['MySQL', 'MongoDB'],
+      backInfo: 'Production Ready',
+      color: 'cyan',
+    },
+    {
+      id: 'devops',
+      icon: '🚀',
+      name: 'DevOps & Tools',
+      skills: ['Docker', 'Git + GitHub', 'CI/CD', 'n8n', 'Jupyter', 'VS Code', 'Conda/venv'],
+      backInfo: 'Daily Workflow',
       color: 'cyan',
     },
     {
       id: 'learning',
-      icon: '🧠',
+      icon: '🔥',
       name: 'Currently Learning',
-      skills: ['GenAI', 'LLMs', 'Next.js'],
+      skills: ['PySpark', 'MLOps', 'Deep Learning', 'LightGBM', 'CatBoost', 'CNNs', 'RNNs'],
       backInfo: 'In Progress',
       color: 'orange',
     },
@@ -215,7 +231,7 @@ export default function Skills() {
         {/* Skills Grid */}
         <div
           ref={gridRef}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 md:gap-8"
         >
           {categories.map((category) => {
             const isFlipped = flippedCards.has(category.id);

@@ -156,106 +156,130 @@ export default function About() {
       {/* Background gradient */}
       <div className="absolute inset-0 bg-gradient-to-b from-deepBlue via-almostBlack to-almostBlack opacity-70" />
 
-      {/* Gradient fade from previous section */}
-      <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-deepBlue to-transparent pointer-events-none z-10" />
+      {/* Gradient fade from previous section - smoother blend */}
+      <div className="absolute top-0 left-0 right-0 h-60 bg-gradient-to-b from-deepBlue/80 via-deepBlue/40 to-transparent pointer-events-none z-10" />
 
       <div className="max-w-6xl mx-auto relative z-10">
         {/* Section Title */}
-        <div className="mb-16">
+        <div className="mb-16 text-center">
           <h2 className="text-4xl md:text-6xl font-heading font-bold mb-4">
             About <span className="text-gradient">Me</span>
           </h2>
-          <div className="w-20 h-1 bg-gradient-to-r from-cyan to-orange rounded-full" />
+          <div className="w-20 h-1 bg-gradient-to-r from-cyan to-orange rounded-full mx-auto" />
         </div>
 
-        {/* Two Column Layout */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 lg:gap-16 items-center">
-          {/* Left Column - Image */}
-          <div ref={imageRef} className="relative">
-            {/* Image Container with glow effect */}
-            <div className="relative aspect-square max-w-xs sm:max-w-sm md:max-w-md mx-auto lg:mx-0">
-              {/* Enhanced Glow effect */}
-              <div className="absolute inset-0 bg-gradient-to-br from-cyan/40 to-orange/30 rounded-2xl blur-2xl" />
-              <div className="absolute inset-0 bg-cyan/20 rounded-2xl blur-xl animate-pulse" />
+        {/* Single Column Centered Layout */}
+        <div className="max-w-4xl mx-auto space-y-12">
+          {/* Bio Section */}
+          <div ref={contentRef} className="text-center space-y-6">
+            <h3 className="text-2xl md:text-3xl font-heading text-cyan mb-4">
+              Brief
+            </h3>
+            <p className="text-lg md:text-xl leading-relaxed text-slate/90 max-w-3xl mx-auto">
+              I&apos;m Kush, a{' '}
+              <span className="text-cyan font-semibold">data science and ML engineer-in-progress</span>,
+              turning messy real-world datasets into clean insights, practical models, and small{' '}
+              <span className="text-orange font-semibold">&quot;Jarvis-style&quot; tools</span>{' '}
+              — from flight prices to food delivery — and shipping them as{' '}
+              <span className="text-cyan font-semibold">web apps people can actually use</span>.
+            </p>
+          </div>
 
-              {/* Image */}
-              <div className="relative w-full h-full rounded-2xl border-2 border-cyan/50 overflow-hidden bg-deepBlue/50 backdrop-blur-sm shadow-[0_0_60px_rgba(100,255,218,0.4)]">
-                {/* Profile Image */}
-                <img
-                  src="/assets/profile.jpg"
-                  alt="Kush Rank - Data Scientist Aspirant"
-                  className="w-full h-full object-cover object-top"
-                  loading="lazy"
-                />
-
-                {/* Enhanced Vignette effect */}
-                <div
-                  className="absolute inset-0"
-                  style={{
-                    background: 'radial-gradient(circle at center, transparent 0%, transparent 40%, rgba(10, 25, 47, 0.4) 70%, rgba(10, 25, 47, 0.8) 100%)'
-                  }}
-                />
-
-                {/* Bottom gradient overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-deepBlue/70 via-transparent to-transparent" />
-
-                {/* Corner accents */}
-                <div className="absolute top-0 left-0 w-8 h-8 border-t-2 border-l-2 border-cyan" />
-                <div className="absolute top-0 right-0 w-8 h-8 border-t-2 border-r-2 border-cyan" />
-                <div className="absolute bottom-0 left-0 w-8 h-8 border-b-2 border-l-2 border-orange" />
-                <div className="absolute bottom-0 right-0 w-8 h-8 border-b-2 border-r-2 border-orange" />
+          {/* Animated Stats */}
+          <div ref={statsRef} className="grid grid-cols-1 sm:grid-cols-3 gap-4 md:gap-6">
+            {/* Projects */}
+            <div className="text-center p-6 md:p-8 rounded-xl bg-deepBlue/30 border border-cyan/20 active:border-cyan/40 md:hover:border-cyan/40 transition-colors cursor-pointer touch-manipulation">
+              <div className="text-4xl md:text-5xl lg:text-6xl font-bold font-heading text-cyan mb-2">
+                {animatedStats.projects}
+                <span className="text-orange">+</span>
               </div>
+              <div className="text-sm md:text-base text-slate/70 font-mono">
+                Projects Completed
+              </div>
+            </div>
+
+            {/* Models */}
+            <div className="text-center p-6 md:p-8 rounded-xl bg-deepBlue/30 border border-orange/20 active:border-orange/40 md:hover:border-orange/40 transition-colors cursor-pointer touch-manipulation">
+              <div className="text-4xl md:text-5xl lg:text-6xl font-bold font-heading text-orange mb-2">
+                {animatedStats.models}
+              </div>
+              <div className="text-sm md:text-base text-slate/70 font-mono">
+                ML Models Deployed
+              </div>
+            </div>
+
+            {/* Hackathons */}
+            <div className="text-center p-6 md:p-8 rounded-xl bg-deepBlue/30 border border-cyan/20 active:border-cyan/40 md:hover:border-cyan/40 transition-colors cursor-pointer touch-manipulation">
+              <div className="text-4xl md:text-5xl lg:text-6xl font-bold font-heading text-cyan mb-2">
+                {animatedStats.hackathons}
+              </div>
+              <div className="text-sm md:text-base text-slate/70 font-mono">Hackathon Finalists</div>
             </div>
           </div>
 
-          {/* Right Column - Content */}
-          <div ref={contentRef} className="space-y-8">
-            {/* Bio */}
-            <div className="space-y-4">
-              <h3 className="text-2xl md:text-3xl font-heading text-cyan mb-4">
-                Brief
-              </h3>
-              <p className="text-lg leading-relaxed text-slate/90">
-                <span className="text-cyan font-semibold">Learning by building:</span>{' '}
-                ML projects with real datasets, clean{' '}
-                <span className="text-orange font-semibold">EDA</span>, and{' '}
-                <span className="text-cyan font-semibold">reproducible results</span>.
-                Currently exploring{' '}
-                <span className="text-orange font-semibold">GenAI</span> and automation
-                while maintaining focus on practical,{' '}
-                <span className="text-cyan font-semibold">deployable solutions</span>.
-              </p>
+          {/* Key Highlights */}
+          <div ref={imageRef} className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-8">
+            {/* Education */}
+            <div className="p-6 md:p-8 rounded-xl bg-gradient-to-br from-deepBlue/50 to-almostBlack/50 border border-cyan/20 active:border-cyan/30 md:hover:border-cyan/30 transition-all">
+              <div className="flex items-start gap-4">
+                <div className="text-3xl md:text-4xl">🎓</div>
+                <div className="flex-1">
+                  <h4 className="text-xl md:text-2xl font-heading text-cyan mb-2">Education</h4>
+                  <p className="text-slate/80 font-mono text-sm md:text-base">
+                    New Jersey Institute of Technology
+                  </p>
+                  <p className="text-slate/60 text-sm mt-1">
+                    Bachelors of Computer Science • 27&apos;
+                  </p>
+                </div>
+              </div>
             </div>
 
-            {/* Animated Stats */}
-            <div ref={statsRef} className="grid grid-cols-1 sm:grid-cols-3 gap-4 md:gap-6 pt-8">
-              {/* Projects */}
-              <div className="text-center p-4 md:p-6 rounded-xl bg-deepBlue/30 border border-cyan/20 active:border-cyan/40 md:hover:border-cyan/40 transition-colors cursor-pointer touch-manipulation">
-                <div className="text-3xl md:text-4xl lg:text-5xl font-bold font-heading text-cyan mb-2">
-                  {animatedStats.projects}
-                  <span className="text-orange">+</span>
-                </div>
-                <div className="text-sm text-slate/70 font-mono">
-                  Projects Completed
-                </div>
-              </div>
-
-              {/* Models */}
-              <div className="text-center p-4 md:p-6 rounded-xl bg-deepBlue/30 border border-orange/20 active:border-orange/40 md:hover:border-orange/40 transition-colors cursor-pointer touch-manipulation">
-                <div className="text-3xl md:text-4xl lg:text-5xl font-bold font-heading text-orange mb-2">
-                  {animatedStats.models}
-                </div>
-                <div className="text-sm text-slate/70 font-mono">
-                  ML Models Deployed
+            {/* Focus Areas */}
+            <div className="p-6 md:p-8 rounded-xl bg-gradient-to-br from-deepBlue/50 to-almostBlack/50 border border-orange/20 active:border-orange/30 md:hover:border-orange/30 transition-all">
+              <div className="flex items-start gap-4">
+                <div className="text-3xl md:text-4xl">🎯</div>
+                <div className="flex-1">
+                  <h4 className="text-xl md:text-2xl font-heading text-orange mb-2">Focus Areas</h4>
+                  <p className="text-slate/80 font-mono text-sm md:text-base">
+                    Machine Learning • GenAI
+                  </p>
+                  <p className="text-slate/60 text-sm mt-1">
+                    End-to-end ML pipelines
+                  </p>
                 </div>
               </div>
+            </div>
 
-              {/* Hackathons */}
-              <div className="text-center p-4 md:p-6 rounded-xl bg-deepBlue/30 border border-cyan/20 active:border-cyan/40 md:hover:border-cyan/40 transition-colors cursor-pointer touch-manipulation">
-                <div className="text-3xl md:text-4xl lg:text-5xl font-bold font-heading text-cyan mb-2">
-                  {animatedStats.hackathons}
+            {/* Currently Learning */}
+            <div className="p-6 md:p-8 rounded-xl bg-gradient-to-br from-deepBlue/50 to-almostBlack/50 border border-cyan/20 active:border-cyan/30 md:hover:border-cyan/30 transition-all">
+              <div className="flex items-start gap-4">
+                <div className="text-3xl md:text-4xl">🚀</div>
+                <div className="flex-1">
+                  <h4 className="text-xl md:text-2xl font-heading text-cyan mb-2">Currently Learning</h4>
+                  <p className="text-slate/80 font-mono text-sm md:text-base">
+                    MLOps • PySpark • Deep Learning
+                  </p>
+                  <p className="text-slate/60 text-sm mt-1">
+                    Scaling ML to production
+                  </p>
                 </div>
-                <div className="text-sm text-slate/70 font-mono">Hackathon Finalists</div>
+              </div>
+            </div>
+
+            {/* Availability */}
+            <div className="p-6 md:p-8 rounded-xl bg-gradient-to-br from-deepBlue/50 to-almostBlack/50 border border-orange/20 active:border-orange/30 md:hover:border-orange/30 transition-all">
+              <div className="flex items-start gap-4">
+                <div className="text-3xl md:text-4xl">💼</div>
+                <div className="flex-1">
+                  <h4 className="text-xl md:text-2xl font-heading text-orange mb-2">Status</h4>
+                  <p className="text-slate/80 font-mono text-sm md:text-base">
+                    Open to Opportunities
+                  </p>
+                  <p className="text-slate/60 text-sm mt-1">
+                    Internships • Full-time roles
+                  </p>
+                </div>
               </div>
             </div>
           </div>
@@ -266,8 +290,8 @@ export default function About() {
       <div className="absolute bottom-0 left-0 w-64 h-64 bg-cyan/5 rounded-full blur-3xl mobile-hide" />
       <div className="absolute top-1/2 right-0 w-96 h-96 bg-orange/5 rounded-full blur-3xl mobile-hide" />
 
-      {/* Gradient fade to next section */}
-      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-b from-transparent to-almostBlack pointer-events-none" />
+      {/* Gradient fade to next section - smoother */}
+      <div className="absolute bottom-0 left-0 right-0 h-60 bg-gradient-to-b from-transparent via-almostBlack/40 to-almostBlack pointer-events-none" />
     </section>
   );
 }
