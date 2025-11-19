@@ -104,20 +104,39 @@ export default function CustomCursor() {
     // Add event listeners
     window.addEventListener('mousemove', handleMouseMove);
 
-    // Add hover listeners to text elements and interactive elements
-    const interactiveElements = document.querySelectorAll(
-      'h1, h2, h3, h4, h5, h6, a, button, input, textarea, select, [role="button"], .cursor-hover'
-    );
+    // Function to attach hover listeners
+    const attachHoverListeners = () => {
+      const interactiveElements = document.querySelectorAll(
+        'h1, h2, h3, h4, h5, h6, a, button, input, textarea, select, [role="button"], .cursor-hover'
+      );
 
-    interactiveElements.forEach((el) => {
-      el.addEventListener('mouseenter', handleMouseEnter);
-      el.addEventListener('mouseleave', handleMouseLeave);
-    });
+      interactiveElements.forEach((el) => {
+        el.addEventListener('mouseenter', handleMouseEnter);
+        el.addEventListener('mouseleave', handleMouseLeave);
+      });
+
+      return interactiveElements;
+    };
+
+    // Initial attachment
+    let interactiveElements = attachHoverListeners();
+
+    // Re-attach after a delay to catch dynamically rendered elements
+    const reattachTimeout = setTimeout(() => {
+      // Remove old listeners
+      interactiveElements.forEach((el) => {
+        el.removeEventListener('mouseenter', handleMouseEnter);
+        el.removeEventListener('mouseleave', handleMouseLeave);
+      });
+      // Reattach to all elements
+      interactiveElements = attachHoverListeners();
+    }, 2000); // Wait 2 seconds for animations to complete
 
     // Cleanup
     return () => {
       document.body.style.cursor = 'auto';
       window.removeEventListener('mousemove', handleMouseMove);
+      clearTimeout(reattachTimeout);
 
       interactiveElements.forEach((el) => {
         el.removeEventListener('mouseenter', handleMouseEnter);

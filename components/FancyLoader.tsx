@@ -35,6 +35,10 @@ export default function FancyLoader({ onComplete }: LoaderProps) {
     { text: '$ deployment ready!', duration: 150 },
   ];
 
+  // Calculate total duration for sync
+  const totalTypingTime = commands.reduce((sum, cmd) => sum + (cmd.text.length * 15) + cmd.duration, 0);
+  const metricsUpdateInterval = totalTypingTime / 100; // Update 100 times to reach 100%
+
   // Neural network visualization
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -172,18 +176,18 @@ export default function FancyLoader({ onComplete }: LoaderProps) {
     return () => clearInterval(typeInterval);
   }, [currentCommand, onComplete]);
 
-  // Update metrics
+  // Update metrics - synced with command duration
   useEffect(() => {
     const interval = setInterval(() => {
       setMetrics((prev) => ({
-        accuracy: Math.min(prev.accuracy + Math.random() * 8, 99.8),
-        loss: Math.max(prev.loss - Math.random() * 8, 0.01),
-        epochs: Math.min(prev.epochs + 2, 100),
+        accuracy: Math.min(prev.accuracy + (99.8 / 100), 99.8),
+        loss: Math.max(prev.loss - (100 / 100), 0.01),
+        epochs: Math.min(prev.epochs + 1, 100),
       }));
-    }, 60);
+    }, metricsUpdateInterval);
 
     return () => clearInterval(interval);
-  }, []);
+  }, [metricsUpdateInterval]);
 
   return (
     <div

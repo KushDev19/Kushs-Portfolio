@@ -166,70 +166,46 @@ export default function Hero() {
   // Handle loading completion
   const handleLoadingComplete = () => {
     setIsLoaded(true);
-    animateContent();
+    // Wait 0.2s before starting animations
+    setTimeout(() => {
+      animateContent();
+    }, 200);
   };
 
   // Animate content after loading
   const animateContent = () => {
-    // Animate name with scramble effect
+    // Animate name with cinematic subtle fade-in and stagger
     const chars = nameContainerRef.current?.querySelectorAll('.name-char');
     if (chars) {
-      // Create unique wave pattern - letters come from below with rotation
-      chars.forEach((char, i) => {
+      // Set initial state - minimal, clean
+      chars.forEach((char) => {
         const element = char as HTMLElement;
-        const wave = Math.sin(i * 0.5) * 100; // Wave pattern
-        const distance = 300 + Math.random() * 200; // Random distance
-
         gsap.set(element, {
-          y: distance,
-          x: wave,
-          rotation: (Math.random() - 0.5) * 720, // Multiple rotations
-          scale: 0,
+          y: 30,
           opacity: 0,
+          filter: 'blur(10px)',
         });
       });
-
-      // Scramble effect
-      const cleanup = animateScramble(finalName, (scrambled) => {
-        setNameChars(splitTextToChars(scrambled));
-      }, 1000);
 
       // Create master timeline for coordinated animation
       const tl = gsap.timeline({
         onComplete: () => {
-          cleanup();
-          setNameChars(splitTextToChars(finalName));
           startTypewriter();
         },
       });
 
-      // Animate each character with wave stagger
+      // Animate each character with cinematic stagger
       chars.forEach((char, i) => {
-        const delay = i * 0.08; // Stagger delay
-        const verticalWave = Math.sin(i * 0.8) * 50; // Vertical wave during animation
-
         tl.to(
           char,
           {
-            y: verticalWave, // Overshoot with wave
-            x: 0,
-            rotation: 360, // Full rotation
-            scale: 1.2, // Slight overshoot
+            y: 0,
             opacity: 1,
-            duration: 0.8,
-            ease: 'back.out(2)',
+            filter: 'blur(0px)',
+            duration: 1.2,
+            ease: 'power3.out',
           },
-          delay
-        ).to(
-          char,
-          {
-            y: 0, // Settle to final position
-            scale: 1,
-            rotation: 0,
-            duration: 0.4,
-            ease: 'power2.inOut',
-          },
-          delay + 0.5
+          i * 0.08 // Subtle stagger
         );
       });
     }
@@ -254,12 +230,25 @@ export default function Hero() {
         clearInterval(interval);
         setShowCursor(false);
 
-        // Animate subtitle
-        gsap.fromTo(
-          subtitleRef.current,
-          { opacity: 0, y: 20 },
-          { opacity: 1, y: 0, duration: 0.8, ease: 'power2.out' }
-        );
+        // Animate subtitle with stagger effect on each word
+        setTimeout(() => {
+          const subtitle = subtitleRef.current;
+          if (subtitle) {
+            const words = subtitle.querySelectorAll('.subtitle-word');
+            gsap.fromTo(
+              words,
+              { opacity: 0, y: 20, filter: 'blur(10px)' },
+              { 
+                opacity: 1, 
+                y: 0, 
+                filter: 'blur(0px)',
+                duration: 0.8, 
+                stagger: 0.1,
+                ease: 'power2.out' 
+              }
+            );
+          }
+        }, 100);
 
         // Animate scroll indicator with pulse
         gsap.fromTo(
@@ -269,6 +258,7 @@ export default function Hero() {
             opacity: 1,
             y: 0,
             duration: 0.8,
+            delay: 0.5,
             ease: 'power2.out',
             onComplete: animateScrollIndicator,
           }
@@ -423,6 +413,7 @@ export default function Hero() {
           pointerEvents: 'none',
           userSelect: 'none',
           paddingTop: '240px',
+          opacity: isLoaded ? 1 : 0,
         }}
       >
         <div className="relative w-full h-full flex items-end justify-center">
@@ -453,6 +444,7 @@ export default function Hero() {
           pointerEvents: 'none',
           userSelect: 'none',
           paddingTop: '240px',
+          opacity: isLoaded ? 1 : 0,
         }}
       >
         <div className="relative w-full h-full flex items-end justify-center">
@@ -483,6 +475,7 @@ export default function Hero() {
           pointerEvents: 'none',
           userSelect: 'none',
           paddingTop: '240px',
+          opacity: isLoaded ? 1 : 0,
         }}
       >
         <div className="relative w-full h-full flex items-end justify-center">
@@ -523,7 +516,10 @@ export default function Hero() {
           ref={nameContainerRef}
           className="text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-display font-extrabold mb-3 relative glitch-text px-4"
           style={{
-            color: '#ced4e8',
+            color: '#CED4E8',
+            textShadow: '0 0 1px rgba(100, 255, 218, 0.1), 0 0 60px rgba(100, 255, 218, 0.4), 0 0 90px rgba(100, 255, 218, 0.3)',
+            filter: 'drop-shadow(0 0 20px rgba(100, 255, 218, 0.5))',
+            opacity: isLoaded ? 1 : 0,
           }}
         >
           {nameChars.map((charData, i) => (
@@ -564,16 +560,6 @@ export default function Hero() {
           )}
         </h2>
 
-        {/* Subtitle */}
-        <p
-          ref={subtitleRef}
-          className="text-xl sm:text-2xl md:text-3xl text-slate/90 opacity-0 -mt-6 mb-8 px-4"
-          style={{
-            textShadow: '0 0 20px rgba(100, 255, 218, 0.5), 0 0 40px rgba(100, 255, 218, 0.3)',
-          }}
-        >
-          Turning Data into Stories
-        </p>
       </div>
 
       {/* Scroll Indicator */}
