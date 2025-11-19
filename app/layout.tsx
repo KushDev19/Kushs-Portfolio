@@ -3,6 +3,8 @@ import { Inter, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import SmoothScroll from "@/components/SmoothScroll";
 import CustomCursor from "@/components/CustomCursor";
+import Navigation from "@/components/Navigation";
+import SkipToContent from "@/components/SkipToContent";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -17,13 +19,13 @@ const spaceGrotesk = Space_Grotesk({
 });
 
 export const metadata: Metadata = {
-  title: "Kush Rank | ML Engineer",
-  description: "Machine Learning Engineer specializing in real-world data projects and end-to-end pipelines",
-  keywords: ["Machine Learning", "ML Engineer", "Data Science", "AI", "Portfolio"],
+  title: "Kush Rank | Data Scientist Aspirant",
+  description: "Data Scientist Aspirant specializing in real-world data projects and end-to-end pipelines",
+  keywords: ["Data Science", "Data Scientist", "Machine Learning", "AI", "Portfolio"],
   authors: [{ name: "Kush Rank" }],
   openGraph: {
-    title: "Kush Rank | ML Engineer",
-    description: "Machine Learning Engineer specializing in real-world data projects and end-to-end pipelines",
+    title: "Kush Rank | Data Scientist Aspirant",
+    description: "Data Scientist Aspirant specializing in real-world data projects and end-to-end pipelines",
     type: "website",
   },
 };
@@ -38,9 +40,13 @@ export default function RootLayout({
       <body
         className={`${inter.variable} ${spaceGrotesk.variable} font-sans antialiased bg-deepBlue text-slate`}
       >
+        <SkipToContent />
         <CustomCursor />
+        <Navigation />
         <SmoothScroll>
-          {children}
+          <main id="main-content">
+            {children}
+          </main>
         </SmoothScroll>
       </body>
     </html>
