@@ -5,6 +5,7 @@ import Projects from '@/components/Projects';
 import GitHubStats from '@/components/GitHubStats';
 import Contact from '@/components/Contact';
 import SectionTransition from '@/components/SectionTransition';
+import { Analytics } from '@vercel/analytics/next';
 
 export default function Home() {
   return (
