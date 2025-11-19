@@ -447,13 +447,25 @@ export default function Contact() {
           <p className="text-base font-bold text-cyan">
             Designed & Built by Kush Rank
           </p>
-          <p>
-            © 2025 | Made with Next.js, GSAP & Coffee ☕
-          </p>
+          <div className="space-y-2">
+            <p className="text-cyan/80 font-semibold">Tech Stack:</p>
+            <p className="text-xs">
+              Next.js 14 • React 18 • TypeScript • Tailwind CSS • GSAP • Lenis
+            </p>
+            <p className="mt-3">
+              © 2025 | Crafted with precision & Coffee ☕
+            </p>
+          </div>
 
-          {/* JARVIS Round Button */}
-          <div className="flex justify-center">
+          {/* JARVIS Interactive Showcase */}
+          <div className="flex justify-center mt-8">
             <div className="group relative">
+              {/* Pulsing rings animation */}
+              <div className="absolute inset-0 -m-4">
+                <div className="absolute inset-0 rounded-full border-2 border-cyan/30 animate-ping" />
+                <div className="absolute inset-0 rounded-full border-2 border-green-500/20 animate-pulse" />
+              </div>
+              
               <button
                 onClick={() => {
                   setShowJarvis(true);
@@ -461,20 +473,29 @@ export default function Contact() {
                     { type: 'jarvis', text: "JARVIS activated. Hello! Type 'help' for available commands." },
                   ]);
                 }}
-                className="w-16 h-16 rounded-full bg-gradient-to-br from-cyan/20 to-green-500/20 border-2 border-cyan/50 flex items-center justify-center text-3xl hover:border-green-500 hover:shadow-[0_0_40px_rgba(100,255,218,0.4)] transition-all duration-300 hover:scale-110 relative overflow-hidden"
+                className="relative w-20 h-20 rounded-full bg-gradient-to-br from-cyan/30 to-green-500/30 border-2 border-cyan/60 flex flex-col items-center justify-center hover:border-green-500 hover:shadow-[0_0_50px_rgba(100,255,218,0.6)] transition-all duration-300 hover:scale-110 overflow-hidden"
               >
-                <span className="relative z-10">🤖</span>
-                <div className="absolute inset-0 bg-gradient-to-br from-cyan/10 to-green-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                <span className="text-4xl relative z-10 animate-pulse">🤖</span>
+                <span className="text-[10px] font-mono text-cyan/80 mt-1 relative z-10">JARVIS</span>
+                <div className="absolute inset-0 bg-gradient-to-br from-cyan/20 to-green-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               </button>
 
+              {/* Always visible label */}
+              <div className="absolute -bottom-16 left-1/2 -translate-x-1/2 text-center w-48">
+                <div className="text-xs font-mono text-cyan/60 group-hover:text-cyan transition-colors">
+                  Click to chat with my Personal Assistant
+                </div>
+              </div>
+
               {/* Hover Tooltip */}
-              <div className="absolute -top-20 left-1/2 -translate-x-1/2 px-4 py-2 bg-deepBlue border-2 border-cyan/30 rounded-lg text-xs font-mono text-cyan whitespace-nowrap opacity-0 group-hover:opacity-100 transition-all duration-300 pointer-events-none">
+              <div className="absolute -top-24 left-1/2 -translate-x-1/2 px-4 py-3 bg-deepBlue/95 border-2 border-green-500/50 rounded-lg text-xs font-mono whitespace-nowrap opacity-0 group-hover:opacity-100 transition-all duration-300 pointer-events-none shadow-[0_0_30px_rgba(100,255,218,0.3)]">
                 <div className="text-center">
-                  <div className="font-bold text-sm mb-1">Hi I&apos;m JARVIS,</div>
-                  <div className="text-slate/80">Kush&apos;s personal AI assistant</div>
+                  <div className="font-bold text-sm mb-1 text-green-500">🤖 Hi, I&apos;m JARVIS!</div>
+                  <div className="text-cyan/90">Kush&apos;s Personal Assistant</div>
+                  <div className="text-slate/70 text-[10px] mt-1">Ask me anything about Kush</div>
                 </div>
                 {/* Arrow */}
-                <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-0 h-0 border-l-8 border-r-8 border-t-8 border-l-transparent border-r-transparent border-t-cyan/30" />
+                <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-0 h-0 border-l-8 border-r-8 border-t-8 border-l-transparent border-r-transparent border-t-green-500/50" />
               </div>
             </div>
           </div>

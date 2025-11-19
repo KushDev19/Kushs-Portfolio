@@ -17,7 +17,7 @@ export default function JarvisModal({ isOpen, onClose }: JarvisModalProps) {
   const [messages, setMessages] = useState<Message[]>([
     {
       type: 'jarvis',
-      text: "Hello! I'm JARVIS, Kush's AI assistant. Type 'help' to see available commands.",
+      text: "Hello! I'm JARVIS, Kush's Personal Assistant. Type 'help' to see available commands.",
     },
   ]);
   const [isTyping, setIsTyping] = useState(false);
@@ -25,14 +25,14 @@ export default function JarvisModal({ isOpen, onClose }: JarvisModalProps) {
   const inputRef = useRef<HTMLInputElement>(null);
 
   const jarvisResponses: { [key: string]: string } = {
-    hello: "Hello! I'm JARVIS, Kush's AI assistant. How can I help you today?",
+    hello: "Hello! I'm JARVIS, Kush's Personal Assistant. How can I help you today?",
     hi: "Hi there! Ready to explore Kush's portfolio?",
     hey: "Hey! What would you like to know?",
     projects: `Kush has built some impressive projects:
 • UniWallet - AI-powered campus wallet (Top 5 @ HackFest)
 • Student Performance Predictor with 8 ML models
 • Flight Price Prediction with comprehensive EDA
-• JARVIS AI Assistant (that's me!)
+• JARVIS Personal Assistant (that's me!)
 • Sales EDA & Purchase Prediction
 Type 'github' to visit the repositories!`,
     skills: `Kush's tech stack:
