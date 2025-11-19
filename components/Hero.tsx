@@ -521,7 +521,7 @@ export default function Hero() {
         {/* Name with character animation */}
         <div
           ref={nameContainerRef}
-          className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-display font-extrabold mb-3 relative glitch-text px-4"
+          className="text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-display font-extrabold mb-3 relative glitch-text px-4"
         >
           {nameChars.map((charData, i) => (
             <span
