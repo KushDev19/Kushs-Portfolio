@@ -522,6 +522,9 @@ export default function Hero() {
         <div
           ref={nameContainerRef}
           className="text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-display font-extrabold mb-3 relative glitch-text px-4"
+          style={{
+            color: '#ced4e8',
+          }}
         >
           {nameChars.map((charData, i) => (
             <span
